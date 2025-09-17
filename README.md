@@ -651,32 +651,95 @@ void tinyserve_inference_pipeline(
 ### Requirements
 
 ```bash
-# CUDA Environment (vLLM optimization)
+# CUDA Environment
 CUDA >= 11.0
 cuDNN >= 8.0
+NVCC (NVIDIA CUDA Compiler)
 
-# Python Environment (3D scene representation)
-Python >= 3.8
-PyTorch >= 1.12.0
-torchvision >= 0.13.0
+# Build Tools
+GCC >= 7.0
+Make
 ```
 
 ### Quick Start
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/TinyServe.git
+git clone https://github.com/FastLM/TinyServe.git
 cd TinyServe
 
-# Install dependencies
-pip install -r requirements.txt
+# Check CUDA installation
+make check-cuda
 
-# Compile CUDA kernels
-nvcc -o vllm_kernels vllm_kernels.cu -lcudart -lcublas
+# Build everything
+make all
 
-# Run examples
-python examples/neural_networks/nerf_example.py
-python examples/cuda_kernels/paged_attention_example.py
+# Run example
+make run
+
+# Run benchmark
+make benchmark
+
+# Test compilation
+make test
+```
+
+### Advanced Usage
+
+```bash
+# Compile with specific CUDA architecture
+make CUDA_ARCH="-arch=sm_80" all
+
+# Profile performance
+make profile
+
+# Memory analysis
+make memcheck
+
+# Install system-wide
+make install
+```
+
+### Usage Examples
+
+#### Basic TinyServe Usage
+```cuda
+#include "tinyserve_kernels.h"
+
+// Initialize TinyServe
+TinyServeBlockTable block_table;
+TinyServeAttentionMetadata metadata;
+TinyServeKernelConfig config;
+
+// Configure metadata
+metadata.batch_size = 8;
+metadata.num_heads = 32;
+metadata.head_dim = 128;
+metadata.use_flash_attention = true;
+
+// Initialize block table
+tinyserve_init_block_table(&block_table, max_blocks_per_seq, 
+                          total_physical_blocks, block_size, cache_size);
+
+// Launch optimized attention
+tinyserve_launch_flash_paged_attention(query, key_blocks, value_blocks, 
+                                      output, block_table, seq_lens, 
+                                      &metadata, stream);
+```
+
+#### Query-Aware Cache Selection
+```cuda
+// Analyze query complexity
+tinyserve_launch_query_analysis(queries, query_complexity, 
+                                cache_requirements, stream);
+
+// Select cache blocks
+tinyserve_launch_cache_selection(query_complexity, cache_requirements,
+                                 access_history, selected_cache_blocks, stream);
+
+// Adaptive cache management
+tinyserve_launch_adaptive_cache_management(cache_hit_rates, access_frequencies,
+                                          cache_allocation, stream);
 ```
 
 ### File Structure
@@ -685,55 +748,14 @@ python examples/cuda_kernels/paged_attention_example.py
 TinyServe/
 ├── README.md                    # This file
 ├── vllm_kernels.cu             # Complete CUDA kernel implementation
-├── requirements.txt             # Python dependencies
+├── tinyserve_kernels.h          # Header file for TinyServe kernels
+├── tinyserve_example.cu         # Example implementation
+├── Makefile                     # Build configuration
+├── requirements.txt             # Python dependencies (if needed)
 ├── examples/                    # Example implementations
-│   ├── cuda_kernels/           # CUDA kernel examples
-│   ├── neural_networks/       # Neural network models
-│   └── robotics/               # Robotic applications
+│   └── cuda_kernels/           # CUDA kernel examples
 └── tests/                      # Unit tests
 ```
-
-## 📊 Technical Specifications
-
-### vLLM Optimization
-- **Memory Management**: PagedAttention with block-based allocation
-- **Kernel Fusion**: Fused reshape, attention, and copy operations
-- **Memory Sharing**: Inter-sequence block sharing
-- **Scalability**: Supports up to 131K context length
-
-### Query-Aware Cache Selection
-- **Intelligent Prediction**: Query complexity analysis and cache prediction
-- **Dynamic Allocation**: Runtime cache allocation based on query characteristics
-- **Adaptive Learning**: Continuous improvement through access pattern analysis
-- **Performance Optimization**: 15-25% cache hit rate improvement
-
-### TinyServe Optimized Kernels
-- **FlashAttention Integration**: Memory-efficient attention computation
-- **Advanced Memory Coalescing**: Optimized memory access patterns
-- **Warp-level Optimizations**: Maximum GPU utilization
-- **Dynamic Workload Balancing**: Intelligent resource distribution
-
-## 🔬 Research Applications
-
-### vLLM Applications
-- Large language model serving
-- High-throughput inference
-- Memory-efficient attention computation
-- Scalable transformer architectures
-
-### Query-Aware Cache Selection Applications
-- Long context processing
-- Multi-turn conversation systems
-- Real-time inference optimization
-- Resource-constrained deployment
-- Interactive AI applications
-
-### TinyServe Optimized Kernels Applications
-- High-throughput LLM serving
-- Memory-efficient inference
-- Scalable transformer architectures
-- GPU-optimized attention computation
-- Production LLM deployment
 
 ## 📚 References
 
