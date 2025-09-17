@@ -751,10 +751,15 @@ TinyServe/
 ├── tinyserve_kernels.h          # Header file for TinyServe kernels
 ├── tinyserve_example.cu         # Example implementation
 ├── Makefile                     # Build configuration
-├── requirements.txt             # Python dependencies (if needed)
+├── LICENSE                      # MIT License
+├── .gitignore                   # Git ignore file
+├── requirements.txt             # Python dependencies (optional)
 ├── examples/                    # Example implementations
 │   └── cuda_kernels/           # CUDA kernel examples
+│       └── paged_attention_example.py  # Python example
 └── tests/                      # Unit tests
+    ├── test_tinyserve_kernels.cu  # CUDA test suite
+    └── test_tinyserve_kernels.py  # Python test suite
 ```
 
 ## 📚 References

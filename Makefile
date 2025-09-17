@@ -96,6 +96,21 @@ test: $(KERNEL_LIB)
 	@echo "✓ Static library created: $(KERNEL_LIB)"
 	@echo "✓ Ready for integration!"
 
+# Run CUDA tests
+test-cuda: $(KERNEL_LIB)
+	@echo "Running CUDA tests..."
+	nvcc $(NVCC_FLAGS) -o $(BUILD_DIR)/test_cuda tests/test_tinyserve_kernels.cu -L$(BUILD_DIR) -ltinyserve_kernels
+	./$(BUILD_DIR)/test_cuda
+
+# Run Python tests
+test-python:
+	@echo "Running Python tests..."
+	python tests/test_tinyserve_kernels.py
+
+# Run all tests
+test-all: test-cuda test-python
+	@echo "All tests completed!"
+
 # Check CUDA installation
 check-cuda:
 	@echo "Checking CUDA installation..."
@@ -127,6 +142,9 @@ help:
 	@echo "  run          - Run the example program"
 	@echo "  benchmark    - Run performance benchmark"
 	@echo "  test         - Test compilation"
+	@echo "  test-cuda    - Run CUDA tests"
+	@echo "  test-python  - Run Python tests"
+	@echo "  test-all     - Run all tests"
 	@echo "  check-cuda   - Check CUDA installation"
 	@echo "  profile      - Run performance profiling with nsys"
 	@echo "  memcheck     - Run memory usage analysis"
