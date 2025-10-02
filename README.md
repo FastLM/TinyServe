@@ -792,14 +792,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
 
-## 🙏 Acknowledgments
+<!-- ## 🙏 Acknowledgments
 
 - vLLM team for the excellent open-source framework
 - NeRF community for technical contributions
-- All researchers contributing to multi-modal learning and robotics
+- All researchers contributing to multi-modal learning and robotics -->
 
-## 📞 Contact
+## Contact
 
-- Project Maintainer: [Dong Liu]
 - Email: [dong.liu.dl2367@yale.edu]
 - Project Link: [https://github.com/FastLM/TinyServe](https://github.com/FastLM/TinyServe)
