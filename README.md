@@ -764,19 +764,14 @@ TinyServe/
 
 ## 📚 References
 
-### vLLM Related
-- "Efficient Memory Management for Large Language Model Serving with PagedAttention"
-- "vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention"
+- FlashAttention: Fast and Memory-Efficient Exact Attention — https://github.com/Dao-AILab/flash-attention :contentReference[oaicite:0]{index=0}  
+- vLLM: Efficient Memory Management for LLM Serving — https://github.com/vllm-project/vllm :contentReference[oaicite:1]{index=1}  
+- TransformerEngine (NVIDIA) — https://github.com/NVIDIA/TransformerEngine  
 
-### Query-Aware Cache Selection Related
-- "Query-Aware Cache Selection for Efficient LLM Inference"
-- "Adaptive Cache Management for Large Language Models"
-- "Intelligent Memory Allocation in Transformer Architectures"
-
-### TinyServe Optimized Kernels Related
+<!-- ### TinyServe Optimized Kernels Related
 - "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
 - "TinyServe: Optimized CUDA Kernels for Efficient LLM Serving"
-- "Advanced Memory Management for Large Language Model Inference"
+- "Advanced Memory Management for Large Language Model Inference" -->
 
 <!-- ## 🤝 Contributing
 
@@ -798,7 +793,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - NeRF community for technical contributions
 - All researchers contributing to multi-modal learning and robotics -->
 
-## Contact
+<!-- ## Contact
 
 - Email: [dong.liu.dl2367@yale.edu]
-- Project Link: [https://github.com/FastLM/TinyServe](https://github.com/FastLM/TinyServe)
+- Project Link: [https://github.com/FastLM/TinyServe](https://github.com/FastLM/TinyServe) -->
