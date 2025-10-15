@@ -251,13 +251,13 @@ __global__ void block_allocation_kernel(
 
 Query-Aware Cache Selection is an advanced optimization technique that intelligently manages KV cache based on query characteristics and access patterns. This approach significantly improves inference efficiency by predicting which cache entries are most likely to be accessed and optimizing memory allocation accordingly.
 
-### Key Features
+<!-- ### Key Features
 
 - **Intelligent Cache Prediction**: Uses query semantics to predict cache access patterns
 - **Dynamic Cache Allocation**: Allocates cache resources based on query complexity and importance
 - **Access Pattern Learning**: Learns from historical access patterns to optimize future allocations
 - **Memory Efficiency**: Reduces cache misses and improves memory utilization
-- **Query Complexity Analysis**: Analyzes query characteristics to determine optimal cache strategy
+- **Query Complexity Analysis**: Analyzes query characteristics to determine optimal cache strategy -->
 
 ### Core Components
 
@@ -532,21 +532,21 @@ __global__ void tinyserve_query_aware_paged_attention_kernel(
 }
 ```
 
-### Performance Benefits
+<!-- ### Performance Benefits
 
 - **Cache Hit Rate**: Improves cache hit rate by 15-25%
 - **Memory Efficiency**: Reduces memory usage by 10-20%
 - **Inference Speed**: Increases inference speed by 20-30%
 - **Query Complexity Handling**: Better performance on complex queries
-- **Adaptive Learning**: Continuously improves cache selection over time
+- **Adaptive Learning**: Continuously improves cache selection over time -->
 
-### Application Scenarios
+<!-- ### Application Scenarios
 
 1. **Long Context Processing**: Optimizes cache for long sequences
 2. **Multi-turn Conversations**: Maintains relevant context across turns
 3. **Complex Query Handling**: Prioritizes cache for complex queries
 4. **Resource-Constrained Environments**: Maximizes efficiency with limited memory
-5. **Real-time Inference**: Reduces latency for interactive applications
+5. **Real-time Inference**: Reduces latency for interactive applications -->
 
 ## ⚡ TinyServe Optimized Kernels
 
@@ -764,8 +764,8 @@ TinyServe/
 
 ## 📚 References
 
-- FlashAttention: Fast and Memory-Efficient Exact Attention — https://github.com/Dao-AILab/flash-attention :contentReference[oaicite:0]{index=0}  
-- vLLM: Efficient Memory Management for LLM Serving — https://github.com/vllm-project/vllm :contentReference[oaicite:1]{index=1}  
+- FlashAttention: Fast and Memory-Efficient Exact Attention — https://github.com/Dao-AILab/flash-attention 
+- vLLM: Efficient Memory Management for LLM Serving — https://github.com/vllm-project/vllm 
 - TransformerEngine (NVIDIA) — https://github.com/NVIDIA/TransformerEngine  
 
 <!-- ### TinyServe Optimized Kernels Related
